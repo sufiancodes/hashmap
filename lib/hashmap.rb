@@ -6,13 +6,13 @@ class Hashmap
     # the capacity of hashmap is basically bucket
     @capacity = 0
   end
-  def hash_code(key)
+  def hash(key)
     # key = Digest::SHA256.hexdigest(key)
-    hashcode = 0
-    key.each_char{|char| hashcode = 31*hashcode + char.ord}
-    hashcode
+    hash_code = 0
+    key.each_char{|char| hash_code = 31*hash_code + char.ord}
+    hash_code
   end
 end
 
 l = Hashmap.new
-puts l.hash_code("abc")
+puts l.hash("abc")
