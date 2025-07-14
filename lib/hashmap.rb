@@ -14,9 +14,8 @@ class Hashmap
   end
   def set(key, value)
     key_index = hash(key)
-
+    
   end
 end
 
 l = Hashmap.new
-puts l.hash("abc")
