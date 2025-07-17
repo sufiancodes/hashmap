@@ -1,4 +1,5 @@
-class Hashmap
+require_relative 'Linkedlist'
+class Hashmap < Linkedlist
   attr_accessor :load_factor, :capacity, :buckets
   def initialize
     # load factor determines how filled buckets can get before resizing means get resize after 75% filled
@@ -13,8 +14,8 @@ class Hashmap
     hash_code
   end
   def set(key, value)
-    key_index = hash(key)
-    
+    key_index = hash(key)%capacity
+    buckets[key_index] = value
   end
 end
 
