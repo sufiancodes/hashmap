@@ -1,5 +1,4 @@
-require_relative 'Linkedlist'
-class Hashmap < Linkedlist
+class Hashmap
   attr_accessor :load_factor, :capacity, :buckets
   def initialize
     # load factor determines how filled buckets can get before resizing means get resize after 75% filled
@@ -17,6 +16,32 @@ class Hashmap < Linkedlist
     key_index = hash(key)%capacity
     buckets[key_index] = value
   end
+  def get(key)
+    key_index = hash(key)%capacity
+    p key_index
+    if key_index != nil
+      return buckets[key_index]
+    end
+  end
 end
 
-l = Hashmap.new
+test = Hashmap.new
+p test.buckets
+test.set('apple', 'red')
+test.set('banana', 'yellow')
+test.set('carrot', 'orange')
+test.set('dog', 'brown')
+test.set('elephant', 'gray')
+test.set('frog', 'green')
+test.set('grape', 'purple')
+test.set('hat', 'black')
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden')
+p test.buckets
+
+p test.get("ORFG")
+
+p test.hash("Frog")%16
+p test.hash("ORFG")%16
