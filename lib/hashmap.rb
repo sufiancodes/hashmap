@@ -1,3 +1,4 @@
+requrie_realtive ''
 class Hashmap
   attr_accessor :load_factor, :capacity, :buckets
   def initialize
@@ -40,8 +41,3 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 p test.buckets
-
-p test.get("ORFG")
-
-p test.hash("Frog")%16
-p test.hash("ORFG")%16
