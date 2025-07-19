@@ -1,5 +1,5 @@
-requrie_realtive ''
-class Hashmap
+require_relative 'node'
+class Hashmap < Node
   attr_accessor :load_factor, :capacity, :buckets
   def initialize
     # load factor determines how filled buckets can get before resizing means get resize after 75% filled
@@ -41,3 +41,5 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 p test.buckets
+
+p test.next_node
