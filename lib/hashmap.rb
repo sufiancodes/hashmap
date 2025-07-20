@@ -15,7 +15,15 @@ class Hashmap < Node
   end
   def set(key, value)
     key_index = hash(key)%capacity
-    buckets[key_index] = value
+    if buckets[key_index] != nil 
+      old = buckets[key_index]
+      buckets[key_index] = Node.new
+      buckets[key_index].key = key_index
+      buckets[key_index].value = value
+      buckets[key_index].next_node = old
+    else
+      buckets[key_index] = value
+    end
   end
   def get(key)
     key_index = hash(key)%capacity
@@ -27,7 +35,7 @@ class Hashmap < Node
 end
 
 test = Hashmap.new
-p test.buckets
+# p test.buckets
 test.set('apple', 'red')
 test.set('banana', 'yellow')
 test.set('carrot', 'orange')
@@ -35,6 +43,7 @@ test.set('dog', 'brown')
 test.set('elephant', 'gray')
 test.set('frog', 'green')
 test.set('grape', 'purple')
+test.set('grape', 'Crimson')
 test.set('hat', 'black')
 test.set('ice cream', 'white')
 test.set('jacket', 'blue')
@@ -42,4 +51,4 @@ test.set('kite', 'pink')
 test.set('lion', 'golden')
 p test.buckets
 
-p test.next_node
+p test.get(11)
