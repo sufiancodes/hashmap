@@ -51,6 +51,14 @@ class Hashmap < Node
       return buckets[key_index]
     end
   end
+  def has(key)
+    key_index = hash(key)%capacity
+    if buckets[key_index] == nil
+      return false
+    else
+      return true
+    end
+  end
 end
 
 test = Hashmap.new
@@ -75,3 +83,5 @@ p test.buckets
 # n = test.resize
 # p total
 # p test.get("hat")
+n = test.has("alizan")
+p n
