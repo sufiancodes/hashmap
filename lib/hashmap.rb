@@ -14,6 +14,7 @@ class Hashmap < Node
     hash_code
   end
   def set(key, value)
+    resize_if_need
     key_index = hash(key)%capacity
     if buckets[key_index] != nil 
       old = buckets[key_index]
@@ -32,9 +33,16 @@ class Hashmap < Node
     end
     total_filled
   end
-  def resize
+  def calculate_total_entries
     total_entry = load_factor * capacity
     total_entry.to_i
+  end
+  def resize_if_need
+    total_filled = calculate_bucket_size
+    total_entries = calculate_total_entries
+    if total_filled >= total_entries
+      @capacity = capacity * 2
+    end
   end
   def get(key)
     key_index = hash(key)%capacity
@@ -60,10 +68,10 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
+test.set('ls', 'goldenay')
+p test.buckets
 # p test.buckets
-# p test.buckets
-total = test.calculate_bucket_size
-n = test.resize
-p n
+# total = test.calculate_bucket_size
+# n = test.resize
 # p total
 # p test.get("hat")
