@@ -25,6 +25,13 @@ class Hashmap < Node
       buckets[key_index] = value
     end
   end
+  def calculate_bucket_size
+    total_filled = 0
+    @buckets.each do |bucket|
+      total_filled += 1 if bucket != nil
+    end
+    total_filled
+  end
   def get(key)
     key_index = hash(key)%capacity
     p key_index
@@ -49,6 +56,8 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
-p test.buckets
-
-p test.get(11)
+# p test.buckets
+# p test.buckets
+total = test.calculate_bucket_size
+p total
+# p test.get("hat")
