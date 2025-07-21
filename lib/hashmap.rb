@@ -32,6 +32,10 @@ class Hashmap < Node
     end
     total_filled
   end
+  def resize
+    total_entry = load_factor * capacity
+    total_entry.to_i
+  end
   def get(key)
     key_index = hash(key)%capacity
     p key_index
@@ -59,5 +63,7 @@ test.set('lion', 'golden')
 # p test.buckets
 # p test.buckets
 total = test.calculate_bucket_size
-p total
+n = test.resize
+p n
+# p total
 # p test.get("hat")
