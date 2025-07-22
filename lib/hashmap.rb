@@ -1,12 +1,13 @@
 require_relative 'node'
 class Hashmap < Node
-  attr_accessor :load_factor, :capacity, :buckets
+  attr_accessor :load_factor, :capacity, :buckets, :keys
   def initialize
     # load factor determines how filled buckets can get before resizing means get resize after 75% filled
     @load_factor = 0.75
     # the capacity of hashmap is basically number of the buckets
     @capacity = 16
     @buckets = Array.new(@capacity)
+    @keys = []
   end
   def hash(key)
     hash_code = 0
@@ -15,6 +16,8 @@ class Hashmap < Node
   end
   def set(key, value)
     resize_if_need
+    keys << key
+    # keys.push(key)
     key_index = hash(key)%capacity
     if buckets[key_index] != nil 
       old = buckets[key_index]
@@ -75,6 +78,18 @@ class Hashmap < Node
       buckets[index] = nil
     end
   end
+  def give_keys
+    return keys
+  end
+  def values
+    array = []
+    buckets.each do |value|
+      if value != nil
+        array << value
+      end
+    end
+    return array
+  end
 end
 
 test = Hashmap.new
@@ -93,9 +108,10 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 test.set('ls', 'goldenay')
-p test.buckets
-p test.clear
-p test.buckets
+# p test.buckets
+# p test.keys
+# p test.clear
+# p test.buckets
 # p test.buckets
 # total = test.calculate_bucket_size
 # n = test.resize
@@ -107,3 +123,5 @@ p test.buckets
 # p m
 # length = test.length
 # p length
+n = test.give_keys
+p n
