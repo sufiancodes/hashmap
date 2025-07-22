@@ -59,6 +59,13 @@ class Hashmap < Node
       return true
     end
   end
+  def remove(key)
+    key_index = hash(key)%capacity
+    return nil if buckets[key_index] == nil
+    deleted_item = buckets[key_index]
+    buckets[key_index] = nil
+    return deleted_item
+  end
 end
 
 test = Hashmap.new
@@ -77,11 +84,13 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 test.set('ls', 'goldenay')
-p test.buckets
+# p test.buckets
 # p test.buckets
 # total = test.calculate_bucket_size
 # n = test.resize
 # p total
 # p test.get("hat")
-n = test.has("alizan")
-p n
+# n = test.has("alizan")
+# p n
+m = test.remove("lion")
+p m
