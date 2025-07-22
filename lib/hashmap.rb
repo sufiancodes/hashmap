@@ -70,6 +70,11 @@ class Hashmap < Node
     length = calculate_bucket_size
     return length
   end
+  def clear
+    buckets.each_with_index do |value, index|
+      buckets[index] = nil
+    end
+  end
 end
 
 test = Hashmap.new
@@ -89,6 +94,8 @@ test.set('kite', 'pink')
 test.set('lion', 'golden')
 test.set('ls', 'goldenay')
 p test.buckets
+p test.clear
+p test.buckets
 # p test.buckets
 # total = test.calculate_bucket_size
 # n = test.resize
@@ -98,5 +105,5 @@ p test.buckets
 # p n
 # m = test.remove("lion")
 # p m
-length = test.length
-p length
+# length = test.length
+# p length
