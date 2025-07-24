@@ -52,60 +52,22 @@ class Hashmap
       @capacity = capacity * 2
     end
   end
+  def remove(key)
+    key_index = hash(key)%capacity
+    return nil if buckets[key_index] == nil
+    deleted_item = buckets[key_index]
+    buckets[key_index] = nil
+    return deleted_item
+  end
+    def length
+    length = calculate_bucket_size
+    return length
+    end
+  def clear
+    buckets.each_with_index do |value, index|
+      buckets[index] = nil
+    end
+  end
 end
 test = Hashmap.new
-p test.capacity
-test.set('apple', 'red')
-test.set('creap', 'bed')
-test.set('sheep', 'cat')
-test.set('deep', 'dad')
-test.set('far', 'Navada')
-p test.capacity
-# def calculate_bucket_size
-#     total_filled = 0
-#     @buckets.each do |bucket|
-#       total_filled += 1 if bucket != nil
-#     end
-#     total_filled
-#   end
-#   def calculate_total_entries
-#     total_entry = load_factor * capacity
-#     total_entry.to_i
-#   end
-#   def resize_if_need
-#     total_filled = calculate_bucket_size
-#     total_entries = calculate_total_entries
-#     if total_filled >= total_entries
-#       @capacity = capacity * 2
-#     end
-#   end
-#   def get(key)
-#     key_index = hash(key)%capacity
-#     p key_index
-#     if key_index != nil
-#       return buckets[key_index]
-#     end
-#   end
-#   def has(key)
-#     key_index = hash(key)%capacity
-#     if buckets[key_index] == nil
-#       return false
-#     else
-#       return true
-#     end
-#   end
-#   def remove(key)
-#     key_index = hash(key)%capacity
-#     return nil if buckets[key_index] == nil
-#     deleted_item = buckets[key_index]
-#     buckets[key_index] = nil
-#     return deleted_item
-#   end
-#   def length
-#     length = calculate_bucket_size
-#     return length
-#   end
-#   def clear
-#     buckets.each_with_index do |value, index|
-#       buckets[index] = nil
-#     end
+
