@@ -15,11 +15,20 @@ class Hashmap
   end
   def set(key, value)
     key_index = hash(key) % capacity
-    buckets[key_index] = Linkedlist.new
-    buckets[key_index].append(value, nil, key)
+    if buckets[key_index] == nil
+      buckets[key_index] = Linkedlist.new
+      buckets[key_index].prepend(value, key)
+    elsif buckets[key_index] != nil
+      buckets[key_index].append(value, nil, key)
+    end
   end
 end
 test = Hashmap.new
 
 test.set('apple', 'red')
+test.set('apple', 'bed')
+test.set('apple', 'cat')
+test.set('apple', 'dad')
+
+
 p test.buckets

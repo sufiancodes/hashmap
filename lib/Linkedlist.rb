@@ -18,7 +18,7 @@ class Linkedlist
     else
       current = @head
       current = current.next_node until current.next_node.nil?
-      current.next_node = Node.new(value, nil)
+      current.next_node = Node.new(value, nil, key)
     end
   end
 
