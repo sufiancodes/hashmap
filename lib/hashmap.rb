@@ -14,6 +14,7 @@ class Hashmap
     hash_code
   end
   def set(key, value)
+    resize_if_need
     key_index = hash(key) % capacity
     if buckets[key_index] == nil
       buckets[key_index] = Linkedlist.new
@@ -33,18 +34,33 @@ class Hashmap
     return false if buckets[key_index] == nil
     return true
   end
-
+  def calculate_bucket_size
+    total_filled = 0
+    @buckets.each do |bucket|
+      total_filled += 1 if bucket != nil
+    end
+    total_filled
+  end
+  def calculate_total_entries
+    total_entry = load_factor * capacity
+    total_entry.to_i
+  end
+  def resize_if_need
+    total_filled = calculate_bucket_size
+    total_entries = calculate_total_entries
+    if total_filled >= total_entries
+      @capacity = capacity * 2
+    end
+  end
 end
 test = Hashmap.new
-
+p test.capacity
 test.set('apple', 'red')
 test.set('creap', 'bed')
 test.set('sheep', 'cat')
 test.set('deep', 'dad')
-n = test.has("sheep")
-p n
-p test.buckets
-
+test.set('far', 'Navada')
+p test.capacity
 # def calculate_bucket_size
 #     total_filled = 0
 #     @buckets.each do |bucket|
