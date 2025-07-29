@@ -75,12 +75,25 @@ class Hashmap
     end
   end
   def give_keys
-    keys
+    p keys
   end
   def give_values
-    values
+    p values
   end
-  
+  def entries
+    result = Array.new
+    i = 0
+    until i == keys.length
+      value = values[i]
+      key = keys[i]
+      entry = []
+      entry << key
+      entry << value
+      result << entry
+      i += 1
+    end 
+    result
+  end
 end
 test = Hashmap.new
 
@@ -96,6 +109,6 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
-test.give_keys
-test.give_values
-# p test.buckets
+p test.entries
+# test.give_keys
+# test.give_values
