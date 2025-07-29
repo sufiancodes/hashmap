@@ -75,8 +75,12 @@ class Hashmap
     end
   end
   def give_keys
-    p keys
+    keys
   end
+  def give_values
+    values
+  end
+  
 end
 test = Hashmap.new
 
@@ -93,4 +97,5 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 test.give_keys
+test.give_values
 # p test.buckets
