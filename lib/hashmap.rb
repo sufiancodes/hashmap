@@ -75,23 +75,16 @@ class Hashmap
     end
   end
   def give_keys
-    p keys
+    keys
   end
   def give_values
-    p values
+    values
   end
   def entries
     result = Array.new
-    i = 0
-    until i == keys.length
-      value = values[i]
-      key = keys[i]
-      entry = []
-      entry << key
-      entry << value
-      result << entry
-      i += 1
-    end 
+    keys.each_with_index do |key, index|
+      result << [key, values[index]]
+    end
     result
   end
 end
