@@ -21,7 +21,6 @@ class Linkedlist
       current.next_node = Node.new(value, nil, key)
     end
   end
-
   def size
     size = 1
     current = head

@@ -1,12 +1,14 @@
 require_relative 'Linkedlist'
 class Hashmap
-  attr_accessor :load_factor, :capacity, :buckets, :keys
+  attr_accessor :load_factor, :capacity, :buckets, :keys, :values
   def initialize
     # load factor determines how filled buckets can get before resizing means get resize after 75% filled
     @load_factor = 0.75
     # the capacity of hashmap is basically number of the buckets
     @capacity = 16
     @buckets = Array.new(@capacity)
+    @keys = []
+    @values = []
   end
   def hash(key)
     hash_code = 0
@@ -19,8 +21,12 @@ class Hashmap
     if buckets[key_index] == nil
       buckets[key_index] = Linkedlist.new
       buckets[key_index].prepend(value, key)
+      keys << key
+      values << value
     elsif buckets[key_index] != nil
       buckets[key_index].append(value, nil, key)
+      keys << key
+      values << value
     end
   end
   def get(key)
@@ -68,8 +74,23 @@ class Hashmap
       buckets[index] = nil
     end
   end
+  def give_keys
+    p keys
+  end
 end
 test = Hashmap.new
 
-
-
+test.set('apple', 'red')
+test.set('banana', 'yellow')
+test.set('carrot', 'orange')
+test.set('dog', 'brown')
+test.set('elephant', 'gray')
+test.set('frog', 'green')
+test.set('grape', 'purple')
+test.set('hat', 'black')
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden')
+test.give_keys
+# p test.buckets
