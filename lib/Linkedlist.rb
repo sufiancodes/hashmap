@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'Node'
+require_relative "Node"
 class Linkedlist
   attr_accessor :head
 
